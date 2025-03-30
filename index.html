@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <title>Nanda Varesa | Portfolio</title>
+  <style>
+    /* Modern Color Palette */
+    :root {
+      --primary: #FF6B8B;
+      --primary-dark: #E84393;
+      --secondary: #FF8FAB;
+      --accent: #FFB3C6;
+      --light: #FFE5EC;
+      --dark: #4A2C40;
+      --gray: #7D5A6C;
+      --light-gray: #F8F9FA;
+      --white: #FFFFFF;
+      --max-width: 1200px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    /* Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--light-gray);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    section {
+      padding: 6rem 1rem;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+    }
+
+    .section-title span {
+      color: var(--primary);
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    /* Navigation */
+    nav {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(255, 255, 255, 0.98);
+      z-index: 1000;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      backdrop-filter: blur(5px);
+    }
+
+    .nav-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      transition: var(--transition);
+    }
+
+    .logo:hover {
+      opacity: 0.9;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-menu li a {
+      padding: 0.5rem 1rem;
+      font-weight: 500;
+      color: var(--dark);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-menu li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      bottom: 0;
+      left: 0;
+      transition: var(--transition);
+    }
+
+    .nav-menu li a:hover::after {
+      width: 100%;
+    }
+
+    .nav-menu li a:hover {
+      color: var(--primary);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: pointer;
+      z-index: 1001;
+    }
+
+    /* Hero Section */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, var(--light) 0%, var(--white) 100%);
+      padding-top: 70px;
+    }
+
+    .hero-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      display: inline-block;
+      animation: fadeInUp 1s ease;
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 1s ease 0.2s forwards;
+      opacity: 0;
+    }
+
+    .hero-title span {
+      color: var(--primary);
+    }
+
+    .hero-description {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+      animation: fadeInUp 1s ease 0.4s forwards;
+      opacity: 0;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
+      background-color: var(--primary);
+      color: var(--white);
+      border-radius: 50px;
+      font-weight: 500;
+      transition: var(--transition);
+      box-shadow: var(--shadow-md);
+      animation: fadeInUp 1s ease 0.6s forwards;
+      opacity: 0;
+    }
+
+    .hero-cta:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    
+    .hero-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    animation: fadeIn 1s ease 0.4s forwards;
+    opacity: 0;
+    }
+
+    .hero-img {
+    width: 100%;
+    max-width: 200px; 
+    height: 250px; 
+    border-radius: 15px; 
+    box-shadow: var(--shadow-lg);
+    border: 8px solid var(--white);
+    transition: var(--transition);
+    object-fit: cover;
+    object-position: center; 
+    }
+    .hero-img:hover {
+      transform: scale(1.03);
+    }
+
+    /* About Section */
+    #about {
+      background-color: var(--white);
+      text-align: center;
+    }
+
+    .about-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .about-content h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      color: var(--dark);
+    }
+
+    .about-content p {
+      color: var(--gray);
+      margin-bottom: 1.2rem;
+      line-height: 1.7;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .stat-item {
+      background-color: var(--light);
+      padding: 1.2rem;
+      border-radius: 10px;
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .stat-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-number {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+
+    /* Education Section */
+    #education {
+      background-color: var(--light);
+    }
+
+    .education-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .education-card {
+      background-color: var(--white);
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      width: 100%;
+      max-width: 350px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .education-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .education-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+    }
+
+    .education-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .institution {
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    .year {
+      color: var(--gray);
+      font-size: 0.85rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .education-description {
+      color: var(--gray);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .education-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    }
+
+    /* Skills Section */
+    #soft-skills {
+      background-color: var(--white);
+    }
+
+    .skills-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background-color: var(--light);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      text-align: center;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      background-color: var(--white);
+    }
+
+    .skill-icon {
+      font-size: 2rem;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+    }
+
+    .skill-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+      color: var(--dark);
+    }
+
+    .skill-card p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* Contact Section */
+    #contact {
+      background-color: var(--light);
+      text-align: center;
+    }
+
+    .contact-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-info h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1.2rem;
+      color: var(--dark);
+    }
+
+    .contact-info p {
+      color: var(--gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .contact-details {
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      justify-content: center;
+    }
+
+    .contact-item i {
+      font-size: 1.3rem;
+      color: var(--primary);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: var(--white);
+      color: var(--primary);
+      font-size: 1.1rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .social-link:hover {
+      background-color: var(--primary);
+      color: var(--white);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark);
+      color: var(--white);
+      padding: 3rem 0 1.5rem;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .footer-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .footer-about p {
+      color: #e0b8cb;
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+
+    .footer-links h3,
+    .footer-contact h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+
+    .footer-links h3::after,
+    .footer-contact h3::after {
+      content: '';
+      position: absolute;
+      width: 35px;
+      height: 2px;
+      background-color: var(--primary);
+      bottom: -6px;
+      left: 0;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links a {
+      color: #e0b8cb;
+      transition: var(--transition);
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    .footer-contact p {
+      color: #e0b8cb;
+      margin-bottom: 0.8rem;
+      font-size: 0.9rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid #5d3a4f;
+      color: #c89db4;
+      font-size: 0.85rem;
+    }
+
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 992px) {
+      .hero-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .hero-content {
+        order: 1;
+        text-align: center;
+      }
+
+      .hero-image {
+        order: 2;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+
+      .nav-menu {
+        position: fixed;
+        width: 100%;
+        height: calc(100vh - 70px);
+        top: 70px;
+        left: -100%;
+        background-color: var(--white);
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+        transition: var(--transition);
+        z-index: 999;
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .hero-title {
+        font-size: 2.2rem;
+      }
+
+      .hero-description {
+        font-size: 1rem;
+      }
+
+      .about-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      section {
+        padding: 4rem 1rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .hero-img {
+        max-width: 250px;
+      }
+
+      .education-card {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container container">
+      <a href="#" class="logo">Nanda Varesa</a>
+      <div class="menu-toggle">
+        <i class="ri-menu-line"></i>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#home">Beranda</a></li>
+        <li><a href="#about">Tentang</a></li>
+        <li><a href="#education">Pendidikan</a></li>
+        <li><a href="#soft-skills">Soft Skills</a></li>
+        <li><a href="#contact">Kontak</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home">
+    <div class="hero-container container">
+      <div class="hero-content">
+        <p class="hero-subtitle animate__animated animate__fadeInUp">HALO, NAMA SAYA</p>
+        <h1 class="hero-title">
+          <span>Nanda</span> Varesa <span>Ramadhani</span>
+        </h1>
+        <p class="hero-description">
+          Mahasiswi Sistem Informasi Universitas Brawijaya yang memiliki minat yang besar dalam dunia IT dan desain.
+        </p>
+        <a href="#contact" class="hero-cta">Hubungi Saya</a>
+      </div>
+      <div class="hero-image">
+        <img src="foto5.jpg" alt="Nanda Varesa" class="hero-img">
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">Tentang <span>Saya</span></h2>
+      <div class="about-container">
+        <div class="about-content">
+          <h3>Siapa sih Nanda Varesa???</h3>
+          <p>
+            Hii, Aku Nanda Seorang Mahasiswi Sistem Informasi Universitas Brawijaya yang minat dalam dunia IT dan desain. 
+            Saya memiliki minat besar dalam pengembangan web dan desain grafis, serta selalu ingin 
+            mempelajari teknologi baru.
+          </p>
+          <p>
+            Saya memiliki passion dalam menciptakan solusi digital yang indah dan fungsional. 
+            Selain itu, saya juga menikmati proses belajar hal-hal baru dan berkolaborasi 
+            dengan orang-orang kreatif lainnya.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education">
+    <div class="container">
+      <h2 class="section-title">Pendidikan <span>Saya</span></h2>
+      <div class="education-container">
+        <div class="education-card">
+          <i class="ri-graduation-cap-fill education-icon"></i>
+          <h3>Universitas</h3>
+          <p class="institution">Universitas Brawijaya</p>
+          <p class="year">2024 - Sekarang</p>
+          <p class="education-description">Sistem Informasi</p>
+        </div>
+        
+        <div class="education-card">
+          <i class="ri-book-2-fill education-icon"></i>
+          <h3>Sekolah Menengah Atas</h3>
+          <p class="institution">SMAN 2 SKANTO</p>
+          <p class="year">2021 - 2024</p>
+          <p class="education-description">Jurusan IPAS</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="soft-skills">
+    <div class="container">
+      <h2 class="section-title">Soft <span>Skills</span></h2>
+      <div class="skills-container">
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fas fa-comments"></i>
+          </div>
+          <h3>Komunikasi</h3>
+          <p>Kemampuan komunikasi verbal dan tertulis yang baik dengan kemampuan menyampaikan ide kompleks dengan jelas kepada berbagai audiens.</p>
+        </div>
+        
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Kerja Tim</h3>
+          <p>Kemampuan terbukti untuk berkolaborasi secara efektif dalam lingkungan tim, menghargai perspektif beragam dan berkontribusi positif.</p>
+        </div>
+        
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3>Pemecahan Masalah</h3>
+          <p>Kemampuan analisis yang kuat dengan pendekatan kreatif untuk mengidentifikasi solusi dan mengatasi tantangan.</p>
+        </div>
+        
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3>Manajemen Waktu</h3>
+          <p>Kemampuan memprioritaskan tugas secara efektif dan memenuhi tenggat waktu sambil mempertahankan standar kualitas tinggi.</p>
+        </div>
+        
+        <div class="skill-card">
+          <div class="skill-icon">
+            <i class="fas fa-brain"></i>
+          </div>
+          <h3>Berpikir Kritis</h3>
+          <p>Kemampuan menganalisis informasi secara objektif dan membuat penilaian beralasan berdasarkan bukti.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Hubungi <span>Saya</span></h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>Mari Bekerja Sama!</h3>
+          <p>
+            Tertarik untuk membuat website yang cantik dan fungsional?
+            Hubungi saya melalui:
+          </p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <i class="ri-mail-fill"></i>
+              <span>nandavaresa510@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <i class="ri-phone-fill"></i>
+              <span>+62 822-4836-4440</span>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://instagram.com/nandavrsaa_" class="social-link" target="_blank"><i class="ri-instagram-fill"></i></a>
+            <a href="https://github.com/nandavrsaa" class="social-link" target="_blank"><i class="ri-github-fill"></i></a>
+            <a href="http://www.linkedin.com/in/nanda-varesa" class="social-link" target="_blank"><i class="ri-linkedin-fill"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-about">
+          <div class="footer-logo">Nanda Varesa</div>
+          <p>Membuat web yang cantik dan berfungsi dengan baik adalah passion saya. Mari berkolaborasi untuk menciptakan sesuatu yang luar biasa!</p>
+        </div>
+        <div class="footer-links">
+          <h3>Tautan Cepat</h3>
+          <ul>
+            <li><a href="#home">Beranda</a></li>
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#education">Pendidikan</a></li>
+            <li><a href="#soft-skills">Soft Skills</a></li>
+            <li><a href="#contact">Kontak</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Kontak</h3>
+          <p><i class="ri-mail-fill"></i> nandavaresa510@gmail.com</p>
+          <p><i class="ri-phone-fill"></i> +62 822-4836-4440</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
